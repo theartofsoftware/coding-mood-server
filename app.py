@@ -5,15 +5,23 @@ import uvicorn
 
 from websocket_manager import WebsocketManager
 
+WORKING_STATE = {"state": "working"}
+BROKEN_STATE = {"state": "broken"}
+
 
 def create_app():
     app = Starlette()
     websocket_mgr = WebsocketManager()
 
     @app.route('/')
-    async def homepage(request):
-        await websocket_mgr.broadcast({"code_state": "working"})
-        return JSONResponse({"code_state": "working"})
+    async def working_state(request):
+        await websocket_mgr.broadcast(WORKING_STATE)
+        return JSONResponse(WORKING_STATE)
+
+    @app.route('/broken')
+    async def broken_state(request):
+        await websocket_mgr.broadcast(BROKEN_STATE)
+        return JSONResponse(BROKEN_STATE)
 
     @app.websocket_route('/ws')
     async def websocket_endpoint(websocket):
