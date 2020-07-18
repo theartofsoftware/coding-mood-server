@@ -13,7 +13,7 @@ def create_app():
     app = Starlette()
     coding_mood_service = CodingMoodService(WebsocketManager())
 
-    @app.route('/state', methods=("POST",))
+    @app.route('/pytest-state', methods=("POST",))
     async def set_new_state(request):
         raw_body = await request.body()
         data = raw_body.decode("utf-8")
