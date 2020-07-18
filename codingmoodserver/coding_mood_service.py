@@ -31,7 +31,7 @@ def get_new_state(last_num_of_failures, num_of_failures):
 class CodingMoodService:
     def __init__(self, websocket_mgr):
         self.last_num_of_failures = 9
-        self.last_state = None
+        self.last_state = WORKING_STATE
         self.websocket_mgr = websocket_mgr
 
     async def set_new_state(self, test_run_output):
