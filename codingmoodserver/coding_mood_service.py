@@ -19,13 +19,14 @@ def extract_number_of_failures(test_run_output):
 
 
 def get_new_state(last_num_of_failures, num_of_failures):
-    if num_of_failures == 0:
+    if last_num_of_failures == num_of_failures:
+        return None
+    elif num_of_failures == 0:
         return WORKING_STATE
     elif num_of_failures > last_num_of_failures:
         return BROKEN_STATE
     elif num_of_failures < last_num_of_failures:
         return FIXING_STATE
-    return None
 
 
 class CodingMoodService:
