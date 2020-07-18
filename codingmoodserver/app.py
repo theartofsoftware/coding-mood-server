@@ -21,8 +21,8 @@ def create_app():
         return HTMLResponse()
 
     @app.websocket_route('/ws')
-    async def websocket_endpoint(websocket):
-        await coding_mood_service.handle_websocket(websocket)
+    def websocket_endpoint(websocket):
+        return coding_mood_service.handle_websocket(websocket)
 
     return app
 
