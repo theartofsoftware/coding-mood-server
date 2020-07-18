@@ -17,7 +17,7 @@ async def test_broadcast():
 
 
 @pytest.mark.asyncio
-async def test_unregister_websockets():
+async def test_broadcast_does_not_reach_unregistered_websockets():
     websocket_mgr = WebsocketManager()
     mock_sock = AsyncMock()
     mock_sock_2 = AsyncMock()
